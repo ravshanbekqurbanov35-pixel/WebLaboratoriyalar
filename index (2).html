@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O'zbek Milliy Taomlari | CSS Transition & Animation</title>
+  <style>
+    :root{
+      --main:#8b5e34;
+      --gold:#eab308;
+      --bg:#fff8ee;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:'Segoe UI', Tahoma, sans-serif;
+      background:linear-gradient(180deg,#fff1d6,var(--bg));
+      color:var(--text);
+    }
+    header{
+      background:linear-gradient(90deg,#6f4e37,#9c6b3f);
+      color:white;
+      padding:18px 28px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      position:sticky;
+      top:0;
+      z-index:10;
+      animation: headerDrop 1s ease;
+    }
+    @keyframes headerDrop{
+      from{transform:translateY(-60px);opacity:0;}
+      to{transform:translateY(0);opacity:1;}
+    }
+    header h1{margin:0;font-size:22px;letter-spacing:1px;}
+    header span{font-size:13px;opacity:.9;}
+    main{padding:30px;max-width:1200px;margin:auto;}
+    .hero{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      margin-bottom:35px;
+      align-items:center;
+    }
+    .hero-text h2{
+      font-size:32px;
+      margin:0 0 12px;
+      animation: fadeUp 1.3s ease;
+    }
+    .hero-text p{
+      color:var(--muted);
+      line-height:1.6;
+      animation: fadeUp 1.3s ease .2s backwards;
+    }
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(40px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+    .hero-banner{
+      background:linear-gradient(135deg,#fff3d0,#ffe4ad);
+      padding:28px;
+      border-radius:22px;
+      text-align:center;
+      box-shadow:0 20px 60px rgba(0,0,0,.12);
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-15px);}
+    }
+    .hero-banner div{font-size:60px;}
+    h3{margin-bottom:14px;}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:26px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:20px;
+      padding:18px;
+      box-shadow:0 10px 28px rgba(0,0,0,.08);
+      cursor:pointer;
+      transition:transform .45s ease, box-shadow .45s ease;
+      overflow:hidden;
+      position:relative;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(transparent,rgba(234,179,8,.25));
+      opacity:0;
+      transition:opacity .4s ease;
+    }
+    .card:hover::before{opacity:1;}
+    .card:hover{
+      transform:translateY(-14px) scale(1.05);
+      box-shadow:0 30px 60px rgba(0,0,0,.18);
+    }
+    .img{
+      height:150px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:52px;
+      background:linear-gradient(135deg,#fde68a,#facc15);
+      transition:transform .45s ease;
+      overflow:hidden;
+    }
+    .card:hover .img{transform:scale(1.15);}
+    .card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:16px;
+    }
+    .card h4{margin:14px 0 6px;}
+    .card p{font-size:14px;color:var(--muted);}
+    footer{
+      text-align:center;
+      padding:20px;
+      color:#374151;
+      background:#fdebd0;
+      margin-top:40px;
+    }
+    @media (prefers-reduced-motion:reduce){
+      *{animation:none!important;transition:none!important;}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>O'zbek Milliy Taomlari</h1>
+    <span>CSS Transition va Animation laboratoriya ishi</span>
+  </div>
+  <div style="font-size:34px">🍽</div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-text">
+    <h2>Milliy taomlar – millat ko‘zgusi</h2>
+    <p>Ushbu web sahifa <b>CSS transition</b> va <b>@keyframes animation</b> yordamida milliy taomlarni interaktiv va zamonaviy dizaynda taqdim etadi.</p>
+  </div>
+
+  <div class="hero-banner">
+    <div>🍛</div>
+    <strong>Chiroyli dizayn + silliq animatsiyalar</strong>
+  </div>
+</section>
+
+<section>
+  <h3>Milliy taomlar</h3>
+  <div class="grid">
+
+    <!-- Asosiy 6 ta taom -->
+    <div class="card">
+      <div class="img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKp34NJDWOVx_b-Ie7JYemCuNQmGC_7HcIPQ&s" alt="Osh (Palov)">
+      </div>
+      <h4>Osh (Palov)</h4>
+      <p>Guruch, go‘sht va sabzidan tayyorlanadigan asosiy bayram taomi.</p>
+    </div>
+
+    <div class="card">
+      <div class="img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRerC_NwB3YIhFSCQ-x5yzYSfdGxTqoUNU9iw&s" alt="Shashlik">
+      </div>
+      <h4>Shashlik</h4>
+      <p>Ochıq olovda pishiriladigan mazali go‘sht mahsuloti.</p>
+    </div>
+
+    <div class="card">
+      <div class="img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn9NKiziqkVL3QW6V8RMwfg_-GcepSCfyjyw&s" alt="Lag‘mon">
+      </div>
+      <h4>Lag‘mon</h4>
+      <p>Qo‘l bilan cho‘zilgan makaron va qalin sho‘rva.</p>
+    </div>
+
+    <div class="card">
+      <div class="img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQryi_NwXt1T9vpsz6H9ian627X3TBPnCbv4Q&s" alt="Manti">
+      </div>
+      <h4>Manti</h4>
+      <p>Bug‘da pishiriladigan milliy xamirli taom.</p>
+    </div>
+
+    <div class="card">
+      <div class="img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHHv_ziZl8yehdgt4O7QSkUdy2lc4wD_liOw&s" alt="Norin">
+      </div>
+      <h4>Norin</h4>
+      <p>Qaynatilgan go‘sht va makaron asosidagi qadimiy taom.</p>
+    </div>
+
+   <div class="card">
+      <div cl ass="img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU3U8iNQ6LSqcZ5G9HTeZvKHaLkAVN1izzqQ&s" alt="Non va Choy">
+      </div>
+      <h4>Shavla</h4>
+      <p>O‘zbek dasturxonining ajralmas qismi.</p>
+    </div>
+
+    <!-- Qo'shimcha 6 ta taom -->
+    <div class="card">
+      <div class="img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT43j3vwDrX5iYtnppvdt3TLKgX9uOw8UCGBQ&s" alt="Samsa">
+      </div>
+      <h4>Samsa</h4>
+      <p>Go'sht yoki sabzavotli xamirli taom.</p>
+    </div>
+
+    <div class="card">
+      <div class="img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdUmbTeZ2_zMbdz-qtHd_zZFyYokQR8A-NBQ&s" alt="Shurpa">
+      </div>
+      <h4>Shurpa (Shorva)</h4>
+      <p>Boy go'shtli sho'rva — shurpa.</p>
+    </div>
+
+    <div class="card">
+      <div class="img">
+        <img src="https://i.ytimg.com/vi/xBFJi9UDTyA/mqdefault.jpg" alt="Chak-chak">
+      </div>
+      <h4>Chak-chak</h4>
+      <p>Asosiy shirinliklardan biri — chak-chak.</p>
+    </div>
+
+    <div class="card">
+      <div class="img">
+        <img src="https://i.ytimg.com/vi/J1ybJ5jlwrQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLARGLWdlmxY6OVcoRYNIgPl7f8v8A" alt="Chuchvara">
+      </div>
+      <h4>Chuchvara</h4>
+      <p>Mayda manti — chuchvara.</p>
+    </div>
+
+    <div class="card">
+      <div class="img">
+        <img src="https://storage.kun.uz/source/8/kl2ABBNrf8Osbq9J6wTucUcIFg5iWi_K.jpg" alt="Katlama">
+      </div>
+      <h4>Katlama / Katmer</h4>
+      <p>Qovurilgan yoki kat-qat qilib pishirilgan non turi.</p>
+    </div>
+
+    <div class="card">
+      <div class="img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2Djvf-YQ2m_bod6AoyKwb9xSBNPmdaa8jGA&s" alt="Xalva">
+      </div>
+      <h4>Xalva (Halva)</h4>
+      <p>Xalqaro va mahalliy turdagi halva.</p>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © 2025 | Web texnologiyalar fanidan laboratoriya ishi
+</footer>
+
+</body>
+</html>
