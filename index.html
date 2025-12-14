@@ -1,14 +1,177 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="uz">
 <head>
-    <title>
-        Web sahifam
-    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O‘zbek Milliy Taomlari</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #fafafa;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(45deg, #d35400, #e67e22);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 32px;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+            height: 180px;
+        }
+
+        .card h3 {
+            margin-top: 10px;
+            color: #d35400;
+        }
+
+        .card a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <h1>Bu mening sahifam
-        <h2> sahifaga ma`lumot qo`shildi</h2>
-</body>
 
+<header>
+    <h1>O‘zbek Milliy Taomlari</h1>
+    <p>CSS Media Queries orqali yaratilgan responsiv dizayn</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <img src="https://sokin.moy.su/_ph/194/375598200.jpg" alt="Palov">
+        <h3><a href="https://uz.wikipedia.org/wiki/Palov" target="_blank">Palov (Osh)</a></h3>
+        <p>O‘zbekistonning eng mashhur milliy taomi — guruch, sabzi va go‘shtdan tayyorlanadi. :contentReference[oaicite:0]{index=0}</p>
+    </div>
+
+    <div class="card">
+        <img src="https://img.povar.ru/mobile/d3/9d/fc/40/somsa_samosa-4902.jpg" alt="Somsa">
+        <h3><a href="https://uz.wikipedia.org/wiki/Somsa" target="_blank">Somsa</a></h3>
+        <p>Sariyog‘li xamirda go‘sht yoki sabzavot solib tandirda pishiriladigan mazali pishiriq. :contentReference[oaicite:1]{index=1}</p>
+    </div>
+
+    <div class="card">
+        <img src="https://i.ytimg.com/vi/eA1-8TJxC9A/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBpVb7OVhXLBoZvd5ltwLwtQzTtSw" alt="Tuxumbarak">
+        <h3><a href="https://uz.wikipedia.org/wiki/Tuxum_barak" target="_blank">Tuxumbarak</a></h3>
+        <p>Xamir ichiga tuxum-qaymoq aralashmasi solib tayyorlanadigan qadimiy taom. (Wikipediya sahifasi mavjud emas.)</p>
+    </div>
+
+    <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/Shivit_osh.jpg" alt="Shivit Oshi">
+        <h3><a href="https://uz.wikipedia.org/wiki/Shivit_oshi" target="_blank">Shivit Oshi</a></h3>
+        <p>Xorazmga xos — dereza bargi qo‘shilgan yashil xamir taomi. (Wikipediya sahifasi yo‘q.)</p>
+    </div>
+
+    <div class="card">
+        <img src="https://www.chakchak.uz/uploads/images/reciepts/af800371242fe578.jpg" alt="Manti">
+        <h3><a href="https://uz.wikipedia.org/wiki/Manti" target="_blank">Manti</a></h3>
+        <p>Bug‘da pishiriladigan, go‘shtli yoki sabzavotli mayda xamirli dumplinglar. (Wikipediya sahifasi yo‘q.)</p>
+    </div>
+
+    <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTT6lrsguwxAKHRSHuIF60b7DF5T8w6j2DxxHwQvNw_AtpyZszHhW_puKPYwGs7A9wmN4&usqp=CAU" alt="Lag'mon">
+        <h3><a href="https://uz.wikipedia.org/wiki/Lag%CA%BBmon" target="_blank">Lagʻmon</a></h3>
+        <p>Qo‘l bilan cho‘zilgan xamir va sabzavotli go‘shtli qayla bilan tayyorlanadigan noodlli taom. (Wikipediya sahifasi yo‘q.)</p>
+    </div>
+
+    <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRQENwYSDuvU9q8liI80iplY0BbpgaqYxHWQ&s" alt="Norin">
+        <h3><a href="https://uz.wikipedia.org/wiki/Norin_(taom)" target="_blank">Norin</a></h3>
+        <p>Mayda xamir va mayin go‘sht bo‘laklari aralashmasidan tayyorlanadigan sovuq taom. (Wikipediya sahifasi yo‘q.)</p>
+    </div>
+
+    <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCyHCorOLFPYdsoYKBBVDTaoSiNJDJOB8WEA&s" alt="Sho'rva">
+        <h3><a href="https://uz.wikipedia.org/wiki/Sho%CA%BBrva" target="_blank">Shoʻrva</a></h3>
+        <p>Go‘sht, sabzavot va kartoshkadan tayyorlanadigan an’anaviy sho‘rva. (Wikipediya sahifasi yo‘q.)</p>
+    </div>
+
+    <div class="card">
+        <img src="https://i.ytimg.com/vi/J1ybJ5jlwrQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLARGLWdlmxY6OVcoRYNIgPl7f8v8A" alt="Chuchvara">
+        <h3><a href="https://uz.wikipedia.org/wiki/Chuchvara" target="_blank">Chuchvara</a></h3>
+        <p>Mayda manti ko‘rinishidagi, shoʻrva bilan beriladigan mazali taom. (Wikipediya sahifasi yo‘q.)</p>
+    </div>
+
+    <div class="card">
+        <img src="https://lh3.googleusercontent.com/proxy/nIUudijQomEXQ4AQ9l90aICPOGYTknP13nhdiVm_OVXFJ8KOs16NNKd2zPEZaoQZXU93yPNvo9wTsVQSTs4_eBEzMrsdl3-qWC25_q4_XIvSAaW5X_mePAByaafb4Rsz5XgGOcImrM2gnWolbB9rycuY30eCxU9pIfKMFXrWzI-VUA" alt="Qozon Kabob">
+        <h3><a href="https://uz.wikipedia.org/wiki/Qozon_kabob" target="_blank">Qozon Kabob</a></h3>
+        <p>Go‘sht va kartoshkani qozonda qovurib tayyorlanadigan mazali taom. (Wikipediya sahifasi yo‘q.)</p>
+    </div>
+
+    <!-- Qo'shimcha 2 ta taom: -->
+
+    <div class="card">
+        <img src="https://alhidoya.uz/wp-content/uploads/2020/01/non-1.jpg" alt="Tandir Noni">
+        <h3><a href="https://uz.wikipedia.org/wiki/Qozon_kabob" target="_blank">Tandir Noni</a></h3>
+        <p>O‘zbekiston an’anaviy noni — tandirda pishiriladigan, har ovqat bilan beriladigan non. (Taom deb ham ko‘riladi.)</p>
+    </div>
+
+    <div class="card">
+        <img src="https://uzbekistan.travel/storage/app/media/nargiza/cropped-images/234672603-img_1590-0-0-0-0-1597825966.jpg" alt="Halva">
+        <h3><a href="https://uz.wikipedia.org/wiki/Holva" target="_blank">Halva (Xalva)</a></h3>
+        <p>Shirinlik — o‘zbekistonliklar orasida tarqalgan klassik halva turi. (Wikipediya Halva sahifasiga link.)</p>
+    </div>
+
+</div>
+
+</body>
 </html>
