@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>O'zbek Milliy Taomlari</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8e7;
+            padding: 20px;
+        }
+        h1 {
+            color: #d35400;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>O'zbek Milliy Taomlari</h1>
+    <ul id="taomlar-list">
+        <!-- Taomlar JavaScript orqali qo'shiladi -->
+    </ul>
+
+    <input type="text" id="yangi-taom" placeholder="Yangi taom nomi">
+    <button id="qo'shish-btn">Qo'shish</button>
+
+    <script>
+        // Taomlar massivini yaratish
+        let taomlar = ["Palov", "Shurpa", "Manti", "Samsa", "Lag'mon"];
+
+        // Taomlar ro'yxatini sahifaga chiqarish funksiyasi
+        function taomlarniChopEt() {
+            const list = document.getElementById("taomlar-list");
+            list.innerHTML = ""; // Avvalgi ro'yxatni tozalash
+
+            taomlar.forEach(function(taom, index) {
+                const li = document.createElement("li");
+                li.textContent = taom;
+
+                // Har bir taomga o'chirish tugmasi qo'shish
+                const btn = document.createElement("button");
+                btn.textContent = "O'chirish";
+                btn.style.marginLeft = "10px";
+                btn.onclick = function() {
+                    taomlar.splice(index, 1); // Taomni massivdan o'chirish
+                    taomlarniChopEt(); // Ro'yxatni yangilash
+                };
+
+                li.appendChild(btn);
+                list.appendChild(li);
+            });
+        }
+
+        // Sahifa yuklanganida taomlarni chiqarish
+        taomlarniChopEt();
+
+        // Yangi taom qo'shish funksiyasi
+        document.getElementById("qo'shish-btn").onclick = function() {
+            const yangiTaom = document.getElementById("yangi-taom").value.trim();
+            if(yangiTaom !== "") {
+                taomlar.push(yangiTaom);
+                taomlarniChopEt();
+                document.getElementById("yangi-taom").value = ""; // Inputni tozalash
+            } else {
+                alert("Iltimos, taom nomini kiriting!");
+            }
+        };
+    </script>
+
+</body>
+</html>
