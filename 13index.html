@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>O‘zbek Milliy Taomlari</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #f6d365, #fda085);
+            margin: 0;
+        }
+
+        header {
+            background: #8b0000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #8b0000;
+        }
+
+        select, button, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #8b0000;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #a52a2a;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .taom-buttons button {
+            width: 48%;
+            margin: 5px 1%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #8b0000;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+ <header>
+    <h1>🍽 O‘zbek Milliy Taomlari</h1>
+    <p>JavaScript eventlar (click, change, submit)</p>
+</header>
+
+<div class="container">
+
+    <h2>📌 Taomni tanlang (change event)</h2>
+    <select id="taomSelect">
+        <option value="">-- Taomni tanlang --</option>
+        <option value="osh">Osh</option>
+        <option value="somsa">Somsa</option>
+        <option value="manti">Manti</option>
+        <option value="lagmon">Lag'mon</option>
+        <option value="shashlik">Shashlik</option>
+        <option value="chuchvara">Chuchvara</option>
+        <option value="norin">Norin</option>
+        <option value="mastava">Mastava</option>
+        <option value="dimlama">Dimlama</option>
+        <option value="qozon">Qozon kabob</option>
+    </select>
+
+    <div id="taomInfo" class="card"></div>
+
+    <h2>🖱 Taomlar (click event)</h2>
+    <div class="taom-buttons">
+        <button onclick="showTaom('osh')">Osh</button>
+        <button onclick="showTaom('somsa')">Somsa</button>
+        <button onclick="showTaom('manti')">Manti</button>
+        <button onclick="showTaom('lagmon')">Lag'mon</button>
+        <button onclick="showTaom('shashlik')">Shashlik</button>
+        <button onclick="showTaom('chuchvara')">Chuchvara</button>
+        <button onclick="showTaom('norin')">Norin</button>
+        <button onclick="showTaom('mastava')">Mastava</button>
+        <button onclick="showTaom('dimlama')">Dimlama</button>
+        <button onclick="showTaom('qozon')">Qozon kabob</button>
+    </div>
+    
+    <h2>✍️ Fikr bildiring (submit event)</h2>
+    <form id="feedbackForm">
+        <textarea placeholder="Fikringizni yozing..." required></textarea>
+        <button type="submit">Yuborish</button>
+    </form>
+
+    <div id="message" class="card"></div>
+
+</div>
+
+<footer>
+    © 2025 O‘zbek Milliy Taomlari
+</footer>
+
+<script>
+    // Taomlar haqida ma'lumotlar (qisqa tavsif + rasm URL)
+    const taomlar = {
+        osh: {
+            nom: "Osh (Palov)",
+            tavsif: "O‘zbekistonning eng mashhur milliy taomi. Guruch, go‘sht (qo‘y yoki mol), sabzi, piyoz va ziravorlardan tayyorlanadi. Odatda bayramlarda pishiriladi.",
+            rasm: "https://arbuz.com/wp-content/uploads/2009/12/Uzbek-Palov.jpg"
+        },
+        somsa: {
+            nom: "Somsa",
+            tavsif: "Qatlamali xamirdan tayyorlangan pirog. Ichiga go‘sht, kartoshka yoki qovoq solinadi. Tandirda pishiriladi.",
+            rasm: "https://arbuz.com/wp-content/uploads/2017/08/Samsa-Recipe-46.jpg"
+        },
+        manti: {
+            nom: "Manti",
+            tavsif: "Bug‘da pishiriladigan katta dumplinglar. Ichiga qiyma go‘sht, piyoz va ziravorlar solinadi. Qatiq bilan beriladi.",
+            rasm: "https://cdn.shopify.com/s/files/1/0748/1684/8190/files/20240624181502-traditional-20uzbek-20pork-20dumplings-20with-20ajika-20sauce.png?v=1719252905&width=1600&height=900"
+        },
+        lagmon: {
+            nom: "Lag'mon",
+            tavsif: "Qo‘lda tortilgan uzun makaron bilan tayyorlangan sho‘rva. Go‘sht, sabzavotlar va ziravorlar qo‘shiladi.",
+            rasm: "https://arbuz.com/wp-content/uploads/2010/01/Lagman.jpg"
+        },
+        shashlik: {
+            nom: "Shashlik",
+            tavsif: "Marinadlangan go‘sht bo‘laklari shishga tizilib, mangalda pishiriladi. Odatda piyoz va non bilan beriladi.",
+            rasm: "https://img.turkishstylecooking.com/wp-content/uploads/2024/12/ozbek_saslik3.jpg"
+        },
+        chuchvara: {
+            nom: "Chuchvara",
+            tavsif: "Kichik dumplinglar sho‘rvada pishiriladi. Manti ga o‘xshaydi, lekin hajmi ancha kichik.",
+            rasm: "https://www.ahlanwasahlan.co.uk/wp-content/uploads/2023/12/Screenshot-2023-10-21-at-12.07.48.png.webp"
+        },
+        norin: {
+            nom: "Norin",
+            tavsif: "Ot go‘shti va qo‘lda kesilgan nozik makarondan tayyorlanadi. Sovuq taom sifatida beriladi.",
+            rasm: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiS_6tFBXsBxIBFUNbQ_hLP0pxBKd7L2htdWgAtEU5kQknbUW6w2RcZ_vySXzTsPnlnhgWGL45KRpUFE0d61VyPlxttNRtuR-ZKQU1xNOgv9hXywvtMytCCIIKvH6kx6sJ5pXmCAMd6zXzq/s1600/DSCN2489.jpg"
+        },
+        mastava: {
+            nom: "Mastava",
+            tavsif: "Guruchli sho‘rva. Go‘sht, sabzavotlar va sut mahsulotlari qo‘shiladi.",
+            rasm: "https://static.wixstatic.com/media/183ce0_3a3bcf40ab8d4a1abeb6d62d30576bd1~mv2.jpg/v1/fill/w_800,h_533,al_c,q_85/183ce0_3a3bcf40ab8d4a1abeb6d62d30576bd1~mv2.jpg"
+        },
+        dimlama: {
+            nom: "Dimlama",
+            tavsif: "Qozonda qatlam-qatlam terilgan sabzavot va go‘shtdan tayyorlanadigan bug‘langan gushtli taom.",
+            rasm: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Dimlama_%2816425713838%29.jpg"
+        },
+        qozon: {
+            nom: "Qozon kabob",
+            tavsif: "Qozonda qovurilgan go‘sht va kartoshka. Oddiy, ammo juda mazali taom.",
+            rasm: "https://i.ytimg.com/vi/YA6qB27WZD0/maxresdefault.jpg"
+        }
+    };
+
+    // Select orqali tanlanganda (change event)
+    document.getElementById('taomSelect').addEventListener('change', function() {
+        const tanlangan = this.value;
+        showTaom(tanlangan);
+    });
+
+    // Tugma bosilganda (click event) - inline onclick lar allaqachon bor
+    function showTaom(key) {
+        const infoDiv = document.getElementById('taomInfo');
+        if (key && taomlar[key]) {
+            const taom = taomlar[key];
+            infoDiv.innerHTML = `
+                <h3>${taom.nom}</h3>
+                <p>${taom.tavsif}</p>
+              
+            `;
+        } else {
+            infoDiv.innerHTML = '<p>Iltimos, taomni tanlang.</p>';
+        }
+    }
+
+    // Form submit event
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Sahifa yangilanmasin
+        const textarea = this.querySelector('textarea');
+        const messageDiv = document.getElementById('message');
+        
+        if (textarea.value.trim()) {
+            messageDiv.innerHTML = `<p><strong>Rahmat!</strong> Fikringiz qabul qilindi: "${textarea.value}"</p>`;
+            textarea.value = '';
+        } else {
+            messageDiv.innerHTML = '<p>Iltimos, fikr yozing.</p>';
+        }
+    });
+</script>
+
+</body>
+</html>

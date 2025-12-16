@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>O‘zbek Milliy Taomlari | Murakkab JSON</title>
+  <style>
+    *{box-sizing:border-box;font-family:Segoe UI,Tahoma,sans-serif}
+    body{margin:0;background:linear-gradient(135deg,#fff3e0,#ffe0b2)}
+    header{background:#6d3b14;color:#fff;padding:25px;text-align:center}
+    header h1{margin:0;font-size:34px}
+    .container{max-width:1100px;margin:30px auto;padding:20px}
+    .controls{display:flex;gap:15px;flex-wrap:wrap;margin-bottom:20px}
+    select,input{padding:10px;border-radius:10px;border:1px solid #ccc}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .card{background:#fff;border-radius:18px;padding:18px;box-shadow:0 8px 22px rgba(0,0,0,0.12);transition:.3s}
+    .card:hover{transform:translateY(-6px)}
+    .card h3{margin:0;color:#6d3b14}
+    .badge{display:inline-block;background:#ffe0b2;color:#6d3b14;padding:4px 10px;border-radius:20px;font-size:12px;margin:5px 0}
+    footer{text-align:center;padding:15px;color:#555}
+  </style>
+</head>
+<body>
+<header>
+  <h1>O‘zbek Milliy Taomlari</h1>
+  <p>Murakkab JSON bilan ishlash (filter, search, rating)</p>
+</header>
+
+<div class="container">
+  <div class="controls">
+    <select id="regionFilter" onchange="renderFoods()">
+      <option value="">Barcha hududlar</option>
+      <option value="Toshkent">Toshkent</option>
+      <option value="Samarqand">Samarqand</option>
+      <option value="Farg‘ona">Farg‘ona</option>
+    </select>
+    <select id="typeFilter" onchange="renderFoods()">
+      <option value="">Barcha turlar</option>
+      <option value="Asosiy">Asosiy taom</option>
+      <option value="Suyuq">Suyuq taom</option>
+      <option value="Pishiriq">Pishiriq</option>
+    </select>
+    <input type="text" id="search" placeholder="Taom nomi bo‘yicha qidirish" onkeyup="renderFoods()">
+  </div>
+
+  <div class="cards" id="foodList"></div>
+</div>
+
+<footer>© 2025 | Murakkab JSON laboratoriya ishi</footer>
+
+<script>
+const foodsJSON = `[
+  {
+    "id":1,
+    "name":"Osh",
+    "type":"Asosiy",
+    "region":"Samarqand",
+    "ingredients":["Guruch","Go‘sht","Sabzi"],
+    "rating":4.9
+  },
+  {
+    "id":2,
+    "name":"Manti",
+    "type":"Asosiy",
+    "region":"Toshkent",
+    "ingredients":["Xamir","Go‘sht","Piyoz"],
+    "rating":4.7
+  },
+  {
+    "id":3,
+    "name":"Shurva",
+    "type":"Suyuq",
+    "region":"Farg‘ona",
+    "ingredients":["Go‘sht","Kartoshka","Sabzi"],
+    "rating":4.5
+  },
+  {
+    "id":4,
+    "name":"Somsa",
+    "type":"Pishiriq",
+    "region":"Samarqand",
+    "ingredients":["Xamir","Go‘sht"],
+    "rating":4.6
+  }
+]`;
+
+const foods = JSON.parse(foodsJSON);
+
+function renderFoods(){
+  const region = document.getElementById('regionFilter').value;
+  const type = document.getElementById('typeFilter').value;
+  const search = document.getElementById('search').value.toLowerCase();
+
+  const list = document.getElementById('foodList');
+  list.innerHTML = "";
+
+  const filtered = foods.filter(f =>
+    (region === "" || f.region === region) &&
+    (type === "" || f.type === type) &&
+    f.name.toLowerCase().includes(search)
+  );
+
+  filtered.forEach(f => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <h3>🍽 ${f.name}</h3>
+      <span class="badge">${f.type}</span>
+      <span class="badge">${f.region}</span>
+      <p><strong>Masalliqlar:</strong> ${f.ingredients.join(', ')}</p>
+      <p><strong>Reyting:</strong> ⭐ ${f.rating}</p>
+    `;
+    list.appendChild(card);
+  });
+}
+
+renderFoods();
+</script>
+</body>
+</html>

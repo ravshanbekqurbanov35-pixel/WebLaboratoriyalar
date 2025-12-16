@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>O‘zbek Milliy Taomlari | Form Validation</title>
+  <style>
+    *{
+      box-sizing:border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+    body{
+      margin:0;
+      background:linear-gradient(135deg,#fff7e6,#ffe0b2);
+      color:#333;
+    }
+    header{
+      background:#8d4b1f;
+      color:#fff;
+      padding:20px;
+      text-align:center;
+    }
+    header h1{
+      margin:0;
+      font-size:32px;
+    }
+    .container{
+      max-width:900px;
+      margin:30px auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:25px;
+      padding:20px;
+    }
+    .card{
+      background:#fff;
+      border-radius:15px;
+      padding:20px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    }
+    .card h2{
+      margin-top:0;
+      color:#8d4b1f;
+    }
+    ul{
+      padding-left:20px;
+    }
+    ul li{
+      margin:8px 0;
+    }
+    label{
+      display:block;
+      margin-top:12px;
+      font-weight:600;
+    }
+    input, select, textarea{
+      width:100%;
+      padding:10px;
+      margin-top:5px;
+      border-radius:8px;
+      border:1px solid #ccc;
+      font-size:14px;
+    }
+    textarea{
+      resize:none;
+    }
+    .error{
+      color:red;
+      font-size:13px;
+    }
+    button{
+      margin-top:15px;
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      background:#8d4b1f;
+      color:#fff;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    button:hover{
+      background:#a85d2b;
+    }
+    footer{
+      text-align:center;
+      padding:15px;
+      font-size:14px;
+      color:#555;
+    }
+    @media(max-width:768px){
+      .container{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>O‘zbek Milliy Taomlari</h1>
+  <p>JavaScript orqali forma tekshirish (validation)</p>
+</header>
+
+<div class="container">
+  <!-- Taomlar haqida -->
+  <div class="card">
+    <h2>Mashhur Taomlar</h2>
+    <ul>
+      <li>🍚 Osh (Palov)</li>
+      <li>🥟 Manti</li>
+      <li>🍲 Shurva</li>
+      <li>🥖 Non</li>
+      <li>🍜 Lag‘mon</li>
+    </ul>
+    <p>Quyidagi forma orqali sevimli taomingiz haqida fikr qoldiring.</p>
+  </div>
+
+  <!-- Forma -->
+  <div class="card">
+    <h2>Fikr Qoldirish Formasi</h2>
+    <form id="foodForm" onsubmit="return validateForm()">
+      <label>Ismingiz</label>
+      <input type="text" id="name">
+      <div class="error" id="nameError"></div>
+
+      <label>Email</label>
+      <input type="text" id="email">
+      <div class="error" id="emailError"></div>
+
+      <label>Sevimli taomingiz</label>
+      <select id="food">
+        <option value="">-- Tanlang --</option>
+        <option>Osh</option>
+        <option>Manti</option>
+        <option>Shurva</option>
+        <option>Lag‘mon</option>
+        <option>Somsa</option>
+      </select>
+      <div class="error" id="foodError"></div>
+
+      <label>Izoh</label>
+      <textarea id="comment" rows="4"></textarea>
+      <div class="error" id="commentError"></div>
+
+      <button type="submit">Yuborish</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  © 2025 | O‘zbek milliy taomlari web sahifasi
+</footer>
+
+<script>
+  function validateForm(){
+    let valid = true;
+
+    // qiymatlar
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let food = document.getElementById("food").value;
+    let comment = document.getElementById("comment").value.trim();
+
+    // errorlarni tozalash
+    document.getElementById("nameError").innerText = "";
+    document.getElementById("emailError").innerText = "";
+    document.getElementById("foodError").innerText = "";
+    document.getElementById("commentError").innerText = "";
+
+    // Ism tekshirish
+    if(name === ""){
+      document.getElementById("nameError").innerText = "Ism kiritilishi shart";
+      valid = false;
+    }
+
+    // Email tekshirish
+    let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if(email === ""){
+      document.getElementById("emailError").innerText = "Email kiritilishi shart";
+      valid = false;
+    }else if(!email.match(emailPattern)){
+      document.getElementById("emailError").innerText = "Email formati noto‘g‘ri";
+      valid = false;
+    }
+
+    // Taom tekshirish
+    if(food === ""){
+      document.getElementById("foodError").innerText = "Taomni tanlang";
+      valid = false;
+    }
+
+    // Izoh tekshirish
+    if(comment.length < 5){
+      document.getElementById("commentError").innerText = "Izoh kamida 5 ta belgidan iborat bo‘lsin";
+      valid = false;
+    }
+
+    if(valid){
+      alert("Rahmat! Sizning fikringiz qabul qilindi 😊");
+    }
+
+    return valid;
+  }
+</script>
+
+</body>
+</html>
