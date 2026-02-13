@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Talabalar Ma'lumotlari</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 70%;
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        th {
+            background-color: green;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Talabalar Ma'lumotlari</h2>
+
+<button onclick="talabalarniChiqar()">Talabalarni ko‘rsatish</button>
+
+<div id="jadval"></div>
+
+<script>
+    // 2 o'lchovli massiv
+    const talabalar = [
+        ["Zuhra", "Qurbondurdiyeva", [5, 4, 5]],
+        ["Muhayyo", "Sobirova", [4, 4, 3]],
+        ["Lobar", "Abdullayeva", [5, 5, 5]]
+    ];
+
+    function talabalarniChiqar() {
+
+        let html = `
+            <table>
+                <tr>
+                    <th>Ism</th>
+                    <th>Familiya</th>
+                    <th>Baholar</th>
+                </tr>
+        `;
+
+        for (let i = 0; i < talabalar.length; i++) {
+            html += `
+                <tr>
+                    <td>${talabalar[i][0]}</td>
+                    <td>${talabalar[i][1]}</td>
+                    <td>${talabalar[i][2].join(", ")}</td>
+                </tr>
+            `;
+        }
+
+        html += "</table>";
+
+        document.getElementById("jadval").innerHTML = html;
+    }
+</script>
+
+</body>
+</html>
